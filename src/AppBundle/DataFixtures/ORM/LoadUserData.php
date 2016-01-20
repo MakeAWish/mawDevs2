@@ -2,6 +2,8 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use AppBundle\Entity\Category;
+use AppBundle\Entity\Wish;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\User;
@@ -16,7 +18,6 @@ class LoadUserData implements FixtureInterface
         $userAdmin->setRoles(['ROLE_ADMIN']);
         $userAdmin->setEnabled(true);
         $userAdmin->setPlainPassword('admin');
-
         $manager->persist($userAdmin);
 
         $user = new User();
@@ -25,8 +26,21 @@ class LoadUserData implements FixtureInterface
         $user->setRoles(['ROLE_USER']);
         $user->setEnabled(true);
         $user->setPlainPassword('user');
-
         $manager->persist($user);
+
+        $category = new Category();
+        $category->setName("Default");
+        $category->setSlug('default');
+        $manager->persist($category);
+
+        for ($i = 0; $i < 10; $i++) {
+            $wish = new Wish();
+            $wish->setTitle('Vœu #'.$i);
+            $wish->setDescription('Description du vœu #'.$i);
+            $wish->setUser($userAdmin);
+            $wish->setCategory($category);
+            $manager->persist($wish);
+        }
 
         $manager->flush();
     }

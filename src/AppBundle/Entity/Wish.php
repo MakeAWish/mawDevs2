@@ -6,9 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Wish
- *
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\Repository\WishRepository")
  * @ORM\Table("wishes")
- * @ORM\Entity(repositoryClass="Sch\Wish\CoreBundle\Entity\Repository\WishRepository")
  */
 class Wish
 {

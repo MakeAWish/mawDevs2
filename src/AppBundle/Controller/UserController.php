@@ -123,6 +123,22 @@ class UserController extends Controller
     }
 
     /**
+     * Lists all Wish entities
+     * for a specific user
+     *
+     * @Route("/{id}/wish", name="user_wish_index")
+     * @Method("GET")
+     */
+    public function wishIndexAction(Request $request, User $user)
+    {
+        $wishes = $user->getWishes()->toArray();
+
+        return $this->render('wish/index.html.twig', array(
+            'wishes' => $wishes,
+        ));
+    }
+
+    /**
      * Creates a form to delete a User entity.
      *
      * @param User $user The User entity

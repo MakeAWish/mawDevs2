@@ -16,20 +16,25 @@
         <tbody>
         {% for user in users %}
             <tr>
-                <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td>
+                    <a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a>
+                </td>
+                <td>
+                    {{ user.username }}
+                </td>
+                <td>
+                    {{ user.email }}
+                </td>
+                <td>
+                    {{ user.hasRole('ROLE_ADMIN') }}
+                </td>
                 <td>
                     <ul>
                         <li>
+                            <a href="{{ path('user_wish_index', { 'id': user.id }) }}">wishes</a>
+                        </li>
+                        <li>
                             <a href="{{ path('user_show', { 'id': user.id }) }}">show</a>
-                        </li>
-                        <li>
-                            {{ user.username }}
-                        </li>
-                        <li>
-                            {{ user.email }}
-                        </li>
-                        <li>
-                            {{ user.hasRole('ROLE_ADMIN') }}
                         </li>
                         <li>
                             <a href="{{ path('user_edit', { 'id': user.id }) }}">edit</a>

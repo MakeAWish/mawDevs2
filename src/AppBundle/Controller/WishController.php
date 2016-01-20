@@ -17,7 +17,8 @@ use AppBundle\Form\WishType;
 class WishController extends Controller
 {
     /**
-     * Lists all Wish entities.
+     * Lists all Wish entities
+     * for the current user
      *
      * @Route("/", name="wish_index")
      * @Method("GET")
@@ -25,8 +26,9 @@ class WishController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
-        $wishes = $em->getRepository('AppBundle:Wish')->findAll();
+        $currentUser = $this->getUser();
+        //$wishes = $em->getRepository('AppBundle:Wish')->findAllOrderedForUser($currentUser);
+        $wishes = $currentUser->getWishes()->toArray();
 
         return $this->render('wish/index.html.twig', array(
             'wishes' => $wishes,

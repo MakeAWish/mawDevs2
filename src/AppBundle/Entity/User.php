@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -20,6 +21,18 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @var ArrayCollection $wishes
+     *
+     * @ORM\OneToMany(targetEntity="Wish", mappedBy="user")
+     */
+    protected $wishes;
+
+    public function __construct()
+    {
+        parent::__construct();
+        // your own logic
+    }
 
     /**
      * Get id
@@ -31,10 +44,12 @@ class User extends BaseUser
         return $this->id;
     }
 
-    public function __construct()
+    /**
+     * @return ArrayCollection
+     */
+    public function getWishes()
     {
-        parent::__construct();
-        // your own logic
+        return $this->wishes;
     }
 }
 

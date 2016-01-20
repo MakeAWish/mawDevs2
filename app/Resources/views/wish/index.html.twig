@@ -15,7 +15,6 @@
         </thead>
         <tbody>
         {% for wish in wishes %}
-            {{ dump(wish) }}
             <tr>
                 <td><a href="{{ path('wish_show', { 'id': wish.id }) }}">{{ wish.id }}</a></td>
                 <td>{{ wish.title }}</td>
