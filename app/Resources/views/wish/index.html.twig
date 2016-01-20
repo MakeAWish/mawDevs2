@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Wish list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Link</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for wish in wishes %}
+            {{ dump(wish) }}
+            <tr>
+                <td><a href="{{ path('wish_show', { 'id': wish.id }) }}">{{ wish.id }}</a></td>
+                <td>{{ wish.title }}</td>
+                <td>{{ wish.description }}</td>
+                <td>{{ wish.link }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('wish_show', { 'id': wish.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('wish_edit', { 'id': wish.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('wish_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

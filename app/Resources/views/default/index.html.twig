@@ -16,6 +16,11 @@
                 </p>
             </div>
 
+            <ul>
+                <li><a href="{{ path('wish_index') }}">My Wishlist</a></li>
+                {% if is_granted("ROLE_ADMIN") %}<li><a href="{{ path('user_index') }}">Users</a></li>{% endif %}
+            </ul>
+
             <div id="next">
                 <h2>What's next?</h2>
                 <p>
