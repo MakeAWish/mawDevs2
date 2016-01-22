@@ -1,9 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'logged.html.twig' %}
 
 {% block body %}
-    <h1>Wish list</h1>
+    <main>
+    {% for wish in wishes %}
+        {% include 'wish/_wish.html.twig' with {'wish': wish} %}
+    {% endfor %}
+    </main>
 
-    <table>
+{#    <table>
         <thead>
             <tr>
                 <th>Id</th>
@@ -33,7 +37,7 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
+    </table>#}
 
     <ul>
         <li>

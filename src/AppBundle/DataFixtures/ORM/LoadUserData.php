@@ -12,6 +12,15 @@ class LoadUserData implements FixtureInterface
 {
     public function load(ObjectManager $manager)
     {
+
+        /**
+         * *********************
+         *        Users
+         * *********************
+         */
+
+        $users = [];
+
         $userAdmin = new User();
         $userAdmin->setUsername('admin');
         $userAdmin->setEmail('borisschapira+admin@gmail.com');
@@ -19,27 +28,62 @@ class LoadUserData implements FixtureInterface
         $userAdmin->setEnabled(true);
         $userAdmin->setPlainPassword('admin');
         $manager->persist($userAdmin);
+        $users[] = $userAdmin;
 
-        $user = new User();
-        $user->setUsername('user');
-        $user->setEmail('borisschapira+user@gmail.com');
-        $user->setRoles(['ROLE_USER']);
-        $user->setEnabled(true);
-        $user->setPlainPassword('user');
-        $manager->persist($user);
+        $userUser = new User();
+        $userUser->setUsername('user');
+        $userUser->setEmail('borisschapira+user@gmail.com');
+        $userUser->setRoles(['ROLE_USER']);
+        $userUser->setEnabled(true);
+        $userUser->setPlainPassword('user');
+        $manager->persist($userUser);
+        $users[] = $userUser;
 
-        $category = new Category();
-        $category->setName("Default");
-        $category->setSlug('default');
-        $manager->persist($category);
+        /**
+         * *********************
+         *        Categories
+         * *********************
+         */
 
-        for ($i = 0; $i < 10; $i++) {
-            $wish = new Wish();
-            $wish->setTitle('Vœu #'.$i);
-            $wish->setDescription('Description du vœu #'.$i);
-            $wish->setUser($userAdmin);
-            $wish->setCategory($category);
-            $manager->persist($wish);
+        $categorySlugs = [
+            'voyage',
+            'multimédia',
+            'animaux',
+            'mode',
+            'sport',
+            'décoration',
+            'culture',
+            'jardinage'
+        ];
+
+        $categories = [];
+
+        foreach($categorySlugs as $slug) {
+            $category = new Category();
+            $category->setName(ucfirst("Voyage"));
+            $category->setSlug($slug);
+            $manager->persist($category);
+            $categories[] = $category;
+        }
+
+        /**
+         * *********************
+         *        Wishes
+         * *********************
+         */
+
+        foreach($users as $user){
+            for ($i = 0; $i < 10; $i++) {
+                $wish = new Wish();
+                $wish->setTitle('Vœu #'.$i);
+                $wish->setDescription('Description du vœu #'.$i);
+                $wish->setUser($user);
+                $wish->setCategory($categories[rand(0,count($categories)-1)]);
+                if(rand(0,9) % 3 == 0){
+                    $wish->setLink('https://borisschapira.com');
+                }
+                $manager->persist($wish);
+            }
         }
 
         $manager->flush();

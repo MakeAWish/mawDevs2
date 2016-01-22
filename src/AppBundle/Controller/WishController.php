@@ -17,17 +17,15 @@ use AppBundle\Form\WishType;
 class WishController extends Controller
 {
     /**
-     * Lists all Wish entities
-     * for the current user
+     * Lists all Wish entities.
      *
      * @Route("/", name="wish_index")
      * @Method("GET")
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        //$em = $this->getDoctrine()->getManager();
         $currentUser = $this->getUser();
-        //$wishes = $em->getRepository('AppBundle:Wish')->findAllOrderedForUser($currentUser);
         $wishes = $currentUser->getWishes()->toArray();
 
         return $this->render('wish/index.html.twig', array(

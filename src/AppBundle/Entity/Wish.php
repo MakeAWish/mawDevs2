@@ -14,13 +14,13 @@ class Wish
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="wishes")
      */
-    private $user;
+    protected $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="Category")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
      */
-    private $category;
+    protected $category;
 
     /**
      * @var integer
@@ -29,29 +29,74 @@ class Wish
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="title", type="string", nullable=false, length=100)
      */
-    private $title;
+    protected $title;
 
     /**
      * @var string
      *
      * @ORM\Column(name="description", type="text", nullable=true)
      */
-    private $description;
+    protected $description;
 
     /**
      * @var string
      *
      * @ORM\Column(name="link", type="text", nullable=true)
      */
-    private $link;
+    protected $link;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="weight", type="integer", nullable=false)
+     */
+    protected $weight;
+
+    public function __construct()
+    {
+        $this->weight = 0;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWeight()
+    {
+        return $this->weight;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWeightLabel()
+    {
+        $weight = $this->getWeight();
+        if ($weight <= 0) {
+            return "Pourquoi pas ?";
+        } elseif ($weight == 1) {
+            echo "J'en ai envie";
+        } elseif ($weight == 2) {
+            echo "Vitale !";
+        }
+    }
+
+    /**
+     * @param string $weight
+     * @return Wish
+     */
+    public function setWeight($weight)
+    {
+        $this->weight = $weight;
+
+        return $this;
+    }
 
     /**
      * Get id
@@ -61,6 +106,16 @@ class Wish
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 
     /**
@@ -77,13 +132,13 @@ class Wish
     }
 
     /**
-     * Get title
+     * Get link
      *
      * @return string
      */
-    public function getTitle()
+    public function getLink()
     {
-        return $this->title;
+        return $this->link;
     }
 
     /**
@@ -94,19 +149,19 @@ class Wish
      */
     public function setLink($link)
     {
-        $this->title = $link;
+        $this->link = $link;
 
         return $this;
     }
 
     /**
-     * Get link
+     * Get description
      *
      * @return string
      */
-    public function getLink()
+    public function getDescription()
     {
-        return $this->link;
+        return $this->description;
     }
 
     /**
@@ -123,13 +178,13 @@ class Wish
     }
 
     /**
-     * Get description
+     * Get user
      *
-     * @return string
+     * @return User
      */
-    public function getDescription()
+    public function getUser()
     {
-        return $this->description;
+        return $this->user;
     }
 
     /**
@@ -146,13 +201,13 @@ class Wish
     }
 
     /**
-     * Get user
+     * Get category
      *
-     * @return User
+     * @return Category
      */
-    public function getUser()
+    public function getCategory()
     {
-        return $this->user;
+        return $this->category;
     }
 
     /**
@@ -166,15 +221,5 @@ class Wish
         $this->category = $category;
 
         return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return Category
-     */
-    public function getCategory()
-    {
-        return $this->category;
     }
 }
