@@ -5,8 +5,11 @@
         <h1>Make a wish</h1>
         <div style="float:right">
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                <a href="{{ path('fos_user_profile_edit') }}">{{ app.user.username }}</a> |
-                <a href="{{ path('fos_user_security_logout') }}">
+                <a href="{{ path('fos_user_profile_edit') }}">{{ app.user.username }}</a>
+                {% if is_granted("ROLE_ADMIN") %}
+                    | <a href="{{ path('user_index') }}">Gérer les utilisateurs</a></li>
+                {% endif %}
+                | <a href="{{ path('fos_user_security_logout') }}">
                     {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                 </a>
             {% endif %}

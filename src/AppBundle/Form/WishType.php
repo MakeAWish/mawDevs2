@@ -2,7 +2,9 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,8 +20,19 @@ class WishType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('link')
-            ->add('user')
-            ->add('category')
+            ->add('category', EntityType::class, array(
+                'class' => 'AppBundle:Category',
+                'choice_label' => 'name',
+            ))
+            ->add('weight', ChoiceType::class, array(
+                'choices'  => array(
+                    'Pourquoi pas ?' => 0,
+                    'J\'en ai envie' => 1,
+                    'Vitale !' => 2,
+                ),
+                // *this line is important*
+                'choices_as_values' => true,
+            ))
         ;
     }
     

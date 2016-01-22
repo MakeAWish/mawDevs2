@@ -1,21 +1,45 @@
 {% extends 'logged.html.twig' %}
 
 {% block body %}
-    <h1>Wish edit</h1>
+    <main>
+        {{ form_start(edit_form) }}
+        <article class="wish {{ edit_form.vars.data.category.slug }}">
+            <header>{{ edit_form.vars.data.category.name }}</header>
+            <div id="wish">
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+                {# form_widget(edit_form) #}
 
-    <ul>
-        <li>
-            <a href="{{ path('wish_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                <div class="titre">
+                    {{ form_label(edit_form.title, 'Titre', { 'attr': {'class': 'form-control'} }) }}
+                    {{ form_widget(edit_form.title, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+
+                <div class="lien">
+                    {{ form_label(edit_form.link, 'Lien', { 'attr': {'class': 'form-control'} }) }}
+                    {{ form_widget(edit_form.link, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+
+                <div class="description">
+                    {{ form_label(edit_form.description, 'Description', { 'attr': {'class': 'form-control'} }) }}
+                    {{ form_widget(edit_form.description, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+
+                <div class="categorie">
+                    {{ form_label(edit_form.category, 'Catégorie', { 'attr': {'class': 'form-control'} }) }}
+                    {{ form_widget(edit_form.category, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+
+                <div class="importance">
+                    {{ form_label(edit_form.weight, 'Importance', { 'attr': {'class': 'form-control'} }) }}
+                    {{ form_widget(edit_form.weight, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+
+            </div>
+            <footer>
+                <input type="submit" value="Valider">
+                <a href="{{ path('wish_show', { 'id': wish.id }) }}">Annuler</a>
+            </footer>
+        </article>
+        {{ form_end(edit_form) }}
+    </main>
 {% endblock %}

@@ -45,22 +45,22 @@ class LoadUserData implements FixtureInterface
          * *********************
          */
 
-        $categorySlugs = [
-            'voyage',
-            'multimédia',
-            'animaux',
-            'mode',
-            'sport',
-            'décoration',
-            'culture',
-            'jardinage'
+        $categoryData = [
+            'Voyage' => 'voyage',
+            'Multimédia' => 'multimedia',
+            'Animaux' => 'animaux',
+            'Mode' => 'mode',
+            'Sport' => 'sport',
+            'Décoration' => 'deco',
+            'Culture' => 'culture',
+            'Jardinage' => 'jardinage'
         ];
 
         $categories = [];
 
-        foreach($categorySlugs as $slug) {
+        foreach($categoryData as $name=>$slug) {
             $category = new Category();
-            $category->setName(ucfirst("Voyage"));
+            $category->setName($name);
             $category->setSlug($slug);
             $manager->persist($category);
             $categories[] = $category;
