@@ -48,7 +48,7 @@ class Wish
     /**
      * @var string
      *
-     * @ORM\Column(name="link", type="text", nullable=true)
+     * @ORM\Column(name="link", type="string", nullable=true, length=255)
      */
     protected $link;
 

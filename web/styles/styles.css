@@ -655,32 +655,196 @@ section.submit_1 input.validate {
 
 nav {
   margin: 0;
-  background: url("../images/black_lozenge.png") #000000 repeat fixed;
+  background-color: black;
   color: white;
   display: block;
   line-height: 60px;
   height: 60px;
   width: 100%;
-  box-shadow: 0px 0px 5px black;
+  box-shadow: 0 0 5px black;
   position: relative;
   z-index: 2;
+  font-family: 'Alex Brush', cursive;
 }
 nav h1 {
-  margin: 0px;
-  padding-left: 15px;
-  float: left;
+  margin: 0;
+  padding-right: 1em;
+  float: right;
   font-family: 'Alex Brush', cursive;
   font-weight: normal;
   font-size: 2.5em;
 }
-nav h1 a {
+nav input {
+  position: fixed;
+  opacity: 0;
+}
+nav label {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  width: 100%;
+}
+nav label::before {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(18, 67, 100, 0.6);
+  content: '';
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+nav input:focus + label .burger,
+nav label:hover .burger {
+  opacity: 0.7;
+}
+nav .menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: column nowrap;
+      flex-flow: column nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  /* material acceleration */
+  -webkit-transform: translateX(-100%);
+      -ms-transform: translateX(-100%);
+          transform: translateX(-100%);
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: -webkit-transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), -webkit-transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+nav .menu::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  width: 25em;
+  background: url(../img/footer.png) silver repeat fixed;
+  content: '';
+  -webkit-transform: skewX(15deg) translateX(-100%);
+      -ms-transform: skewX(15deg) translateX(-100%);
+          transform: skewX(15deg) translateX(-100%);
+  -webkit-transform-origin: bottom left;
+      -ms-transform-origin: bottom left;
+          transform-origin: bottom left;
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: -webkit-transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), -webkit-transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+nav .menu a {
+  margin: 0.5em 0;
+  padding: 0.2em 2em;
+  font-size: 1.5em;
+  color: #000;
   text-decoration: none;
+  font-weight: 500;
+  -webkit-transform: translateX(-100%);
+      -ms-transform: translateX(-100%);
+          transform: translateX(-100%);
+  -webkit-transition: color 0.15s, -webkit-transform 0.5s;
+  transition: color 0.15s, -webkit-transform 0.5s;
+  transition: color 0.15s, transform 0.5s;
+  transition: color 0.15s, transform 0.5s, -webkit-transform 0.5s;
+  -webkit-transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+          transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
 }
-nav a {
-  color: white;
+nav .menu a:nth-child(1) {
+  -webkit-transition-delay: 0s, 100ms;
+          transition-delay: 0s, 100ms;
 }
-nav div {
-  float: right;
+nav .menu a:nth-child(2) {
+  -webkit-transition-delay: 0s, 150ms;
+          transition-delay: 0s, 150ms;
+}
+nav .menu a:nth-child(3) {
+  -webkit-transition-delay: 0s, 200ms;
+          transition-delay: 0s, 200ms;
+}
+nav .menu a:nth-child(4) {
+  -webkit-transition-delay: 0s, 250ms;
+          transition-delay: 0s, 250ms;
+}
+nav .menu a:nth-child(5) {
+  -webkit-transition-delay: 0s, 300ms;
+          transition-delay: 0s, 300ms;
+}
+nav .menu a:nth-child(6) {
+  -webkit-transition-delay: 0s, 350ms;
+          transition-delay: 0s, 350ms;
+}
+nav .menu a:hover, nav .menu a:focus {
+  color: black;
+}
+nav [id="navcheck"]:checked + label::before {
+  opacity: 1;
+  pointer-events: auto;
+}
+nav [id="navcheck"]:checked + label .burger::before, nav [id="navcheck"]:checked + label .burger::after {
+  width: 141.42%;
+}
+nav [id="navcheck"]:checked + label .burger::before {
+  -webkit-transform: rotate(45deg) translateY(-50%);
+      -ms-transform: rotate(45deg) translateY(-50%);
+          transform: rotate(45deg) translateY(-50%);
+}
+nav [id="navcheck"]:checked + label .burger::after {
+  -webkit-transform: rotate(-45deg) translateY(50%);
+      -ms-transform: rotate(-45deg) translateY(50%);
+          transform: rotate(-45deg) translateY(50%);
+}
+nav [id="navcheck"]:checked + label .burger .bar {
+  -webkit-transform: scale(0.1);
+      -ms-transform: scale(0.1);
+          transform: scale(0.1);
+}
+nav [id="navcheck"]:checked ~ .menu {
+  -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
+          transform: translateX(0);
+}
+nav [id="navcheck"]:checked ~ .menu::before {
+  -webkit-transform: skewX(15deg) translateX(0);
+      -ms-transform: skewX(15deg) translateX(0);
+          transform: skewX(15deg) translateX(0);
+}
+nav [id="navcheck"]:checked ~ .menu a {
+  -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
+          transform: translateX(0);
+}
+nav [id="navcheck"]:checked ~ main .content {
+  -webkit-transform: translateX(3em);
+      -ms-transform: translateX(3em);
+          transform: translateX(3em);
+  -webkit-transform-origin: left center;
+      -ms-transform-origin: left center;
+          transform-origin: left center;
+  -webkit-filter: blur(2px);
+          filter: blur(2px);
+  /* quite laggy :S */
 }
 
 main {
@@ -726,13 +890,17 @@ main article.wishlist {
       flex-wrap: wrap;
   /* on passe à la colonne suivant quand il faut ? */
 }
-main article.offertautre h2 {
+main article.app-form {
+  border-color: silver;
+}
+main article.app-form footer, main article.app-form header, main article.app-form h2, main article.app-form div {
+  border-color: silver;
+}
+main article.app-form header {
   background-color: silver;
 }
 main article.voyage {
   border-color: #16a085;
-  /* Attention ne sert que pour la page wishlist v2, il faudra supprimer tout ça si les gens ne retiennent pas cette V2 */
-  /* Fin de l'option v2 */
 }
 main article.voyage footer, main article.voyage header, main article.voyage h2, main article.voyage div {
   border-color: #16a085;
@@ -740,20 +908,8 @@ main article.voyage footer, main article.voyage header, main article.voyage h2, 
 main article.voyage header {
   background-color: #16a085;
 }
-main article.voyage.offertmoi h2 {
-  background-color: #16a085;
-  /* fallback pourri */
-  background-color: rgba(22, 160, 133, 0.2);
-}
-main article.voyage.v2 h2 {
-  background-color: #16a085;
-  /* fallback pourri */
-  background-color: rgba(22, 160, 133, 0.2);
-}
 main article.multimedia {
   border-color: #2c3e50;
-  /* Attention ne sert que pour la page wishlist v2, il faudra supprimer tout ça si les gens ne retiennent pas cette V2 */
-  /* Fin de l'option v2 */
 }
 main article.multimedia footer, main article.multimedia header, main article.multimedia h2, main article.multimedia div {
   border-color: #2c3e50;
@@ -761,20 +917,8 @@ main article.multimedia footer, main article.multimedia header, main article.mul
 main article.multimedia header {
   background-color: #2c3e50;
 }
-main article.multimedia.offertmoi h2 {
-  background-color: #2c3e50;
-  /* fallback pourri */
-  background-color: rgba(44, 62, 80, 0.2);
-}
-main article.multimedia.v2 h2 {
-  background-color: #2c3e50;
-  /* fallback pourri */
-  background-color: rgba(44, 62, 80, 0.2);
-}
 main article.animaux {
   border-color: #e67e22;
-  /* Attention ne sert que pour la page wishlist v2, il faudra supprimer tout ça si les gens ne retiennent pas cette V2 */
-  /* Fin de l'option v2 */
 }
 main article.animaux footer, main article.animaux header, main article.animaux h2, main article.animaux div {
   border-color: #e67e22;
@@ -782,20 +926,8 @@ main article.animaux footer, main article.animaux header, main article.animaux h
 main article.animaux header {
   background-color: #e67e22;
 }
-main article.animaux.offertmoi h2 {
-  background-color: #e67e22;
-  /* fallback pourri */
-  background-color: rgba(230, 126, 34, 0.2);
-}
-main article.animaux.v2 h2 {
-  background-color: #e67e22;
-  /* fallback pourri */
-  background-color: rgba(230, 126, 34, 0.2);
-}
 main article.sport {
   border-color: #f1c40f;
-  /* Attention ne sert que pour la page wishlist v2, il faudra supprimer tout ça si les gens ne retiennent pas cette V2 */
-  /* Fin de l'option v2 */
 }
 main article.sport footer, main article.sport header, main article.sport h2, main article.sport div {
   border-color: #f1c40f;
@@ -803,20 +935,8 @@ main article.sport footer, main article.sport header, main article.sport h2, mai
 main article.sport header {
   background-color: #f1c40f;
 }
-main article.sport.offertmoi h2 {
-  background-color: #f1c40f;
-  /* fallback pourri */
-  background-color: rgba(241, 196, 15, 0.2);
-}
-main article.sport.v2 h2 {
-  background-color: #f1c40f;
-  /* fallback pourri */
-  background-color: rgba(241, 196, 15, 0.2);
-}
 main article.mode {
   border-color: #8e44ad;
-  /* Attention ne sert que pour la page wishlist v2, il faudra supprimer tout ça si les gens ne retiennent pas cette V2 */
-  /* Fin de l'option v2 */
 }
 main article.mode footer, main article.mode header, main article.mode h2, main article.mode div {
   border-color: #8e44ad;
@@ -824,20 +944,8 @@ main article.mode footer, main article.mode header, main article.mode h2, main a
 main article.mode header {
   background-color: #8e44ad;
 }
-main article.mode.offertmoi h2 {
-  background-color: #8e44ad;
-  /* fallback pourri */
-  background-color: rgba(142, 68, 173, 0.2);
-}
-main article.mode.v2 h2 {
-  background-color: #8e44ad;
-  /* fallback pourri */
-  background-color: rgba(142, 68, 173, 0.2);
-}
 main article.deco {
   border-color: #e74c3c;
-  /* Attention ne sert que pour la page wishlist v2, il faudra supprimer tout ça si les gens ne retiennent pas cette V2 */
-  /* Fin de l'option v2 */
 }
 main article.deco footer, main article.deco header, main article.deco h2, main article.deco div {
   border-color: #e74c3c;
@@ -845,20 +953,8 @@ main article.deco footer, main article.deco header, main article.deco h2, main a
 main article.deco header {
   background-color: #e74c3c;
 }
-main article.deco.offertmoi h2 {
-  background-color: #e74c3c;
-  /* fallback pourri */
-  background-color: rgba(231, 76, 60, 0.2);
-}
-main article.deco.v2 h2 {
-  background-color: #e74c3c;
-  /* fallback pourri */
-  background-color: rgba(231, 76, 60, 0.2);
-}
 main article.cuisine {
   border-color: #c0392b;
-  /* Attention ne sert que pour la page wishlist v2, il faudra supprimer tout ça si les gens ne retiennent pas cette V2 */
-  /* Fin de l'option v2 */
 }
 main article.cuisine footer, main article.cuisine header, main article.cuisine h2, main article.cuisine div {
   border-color: #c0392b;
@@ -866,20 +962,8 @@ main article.cuisine footer, main article.cuisine header, main article.cuisine h
 main article.cuisine header {
   background-color: #c0392b;
 }
-main article.cuisine.offertmoi h2 {
-  background-color: #c0392b;
-  /* fallback pourri */
-  background-color: rgba(192, 57, 43, 0.2);
-}
-main article.cuisine.v2 h2 {
-  background-color: #c0392b;
-  /* fallback pourri */
-  background-color: rgba(192, 57, 43, 0.2);
-}
 main article.culture {
   border-color: #3498db;
-  /* Attention ne sert que pour la page wishlist v2, il faudra supprimer tout ça si les gens ne retiennent pas cette V2 */
-  /* Fin de l'option v2 */
 }
 main article.culture footer, main article.culture header, main article.culture h2, main article.culture div {
   border-color: #3498db;
@@ -887,20 +971,8 @@ main article.culture footer, main article.culture header, main article.culture h
 main article.culture header {
   background-color: #3498db;
 }
-main article.culture.offertmoi h2 {
-  background-color: #3498db;
-  /* fallback pourri */
-  background-color: rgba(52, 152, 219, 0.2);
-}
-main article.culture.v2 h2 {
-  background-color: #3498db;
-  /* fallback pourri */
-  background-color: rgba(52, 152, 219, 0.2);
-}
 main article.jardinage {
   border-color: #2ecc71;
-  /* Attention ne sert que pour la page wishlist v2, il faudra supprimer tout ça si les gens ne retiennent pas cette V2 */
-  /* Fin de l'option v2 */
 }
 main article.jardinage footer, main article.jardinage header, main article.jardinage h2, main article.jardinage div {
   border-color: #2ecc71;
@@ -908,36 +980,14 @@ main article.jardinage footer, main article.jardinage header, main article.jardi
 main article.jardinage header {
   background-color: #2ecc71;
 }
-main article.jardinage.offertmoi h2 {
-  background-color: #2ecc71;
-  /* fallback pourri */
-  background-color: rgba(46, 204, 113, 0.2);
-}
-main article.jardinage.v2 h2 {
-  background-color: #2ecc71;
-  /* fallback pourri */
-  background-color: rgba(46, 204, 113, 0.2);
-}
 main article.nocat {
   border-color: #d8d8d8;
-  /* Attention ne sert que pour la page wishlist v2, il faudra supprimer tout ça si les gens ne retiennent pas cette V2 */
-  /* Fin de l'option v2 */
 }
 main article.nocat footer, main article.nocat header, main article.nocat h2, main article.nocat div {
   border-color: #d8d8d8;
 }
 main article.nocat header {
   background-color: #d8d8d8;
-}
-main article.nocat.offertmoi h2 {
-  background-color: #d8d8d8;
-  /* fallback pourri */
-  background-color: rgba(216, 216, 216, 0.2);
-}
-main article.nocat.v2 h2 {
-  background-color: #d8d8d8;
-  /* fallback pourri */
-  background-color: rgba(216, 216, 216, 0.2);
 }
 main article header {
   clear: both;
@@ -977,7 +1027,7 @@ main article footer {
           flex-direction: row;
   /* affichage horizontal */
   width: 100%;
-  background: url("../images/footer.png") silver repeat fixed;
+  background: url("../img/footer.png") silver repeat fixed;
   text-align: center;
 }
 main article footer a {
@@ -1021,7 +1071,7 @@ h3 {
   text-align: center;
 }
 
-article.wish {
+article.wish, article.app-form {
   width: 60%;
   margin-left: auto;
   margin-right: auto;
@@ -1072,25 +1122,42 @@ article div {
 }
 
 /*********************************************************************************************************************/
-/************************************ Page de modification d'un voeu *************************************************/
-/*********************************************************************************************************************/
-.editor {
-  width: 100%;
-}
-
-.titre, .lien, .description, .categorie, .importance {
-  margin: 20px auto;
-  border: none;
-}
-.titre textarea, .lien textarea, .description textarea, .categorie textarea, .importance textarea {
-  display: block;
-  width: 100%;
-  margin-top: 10px;
-}
-
-/*********************************************************************************************************************/
 /************************************ Page d'ajout d'un voeu *********************************************************/
 /*********************************************************************************************************************/
 .nocat header {
   color: #d8d8d8;
+}
+
+form input[type=text],
+form input[type=email],
+form input[type=url],
+form input[type=password],
+form textarea {
+  width: 100%;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+form input[type=text]:focus,
+form input[type=email]:focus,
+form input[type=url]:focus,
+form input[type=password]:focus,
+form textarea:focus {
+  outline: 0;
+  border-color: #4697e4;
+}
+
+.editor {
+  width: 100%;
+}
+
+.form-group {
+  margin: 20px auto;
+  border: none;
+}
+.form-group textarea {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
 }

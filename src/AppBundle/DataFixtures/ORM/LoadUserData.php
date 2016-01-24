@@ -7,6 +7,10 @@ use AppBundle\Entity\Wish;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\User;
+use Faker\Factory;
+use Faker\Provider\Internet;
+use Faker\Provider\Lorem;
+use Faker\Provider\fr_FR\Person;
 
 class LoadUserData implements FixtureInterface
 {
@@ -19,6 +23,8 @@ class LoadUserData implements FixtureInterface
          * *********************
          */
 
+        $faker = Factory::create('fr_FR');
+
         $users = [];
 
         $userAdmin = new User();
@@ -27,17 +33,23 @@ class LoadUserData implements FixtureInterface
         $userAdmin->setRoles(['ROLE_ADMIN']);
         $userAdmin->setEnabled(true);
         $userAdmin->setPlainPassword('admin');
+        $userAdmin->setFirstName($faker->firstName);
+        $userAdmin->setLastName($faker->lastName);
         $manager->persist($userAdmin);
         $users[] = $userAdmin;
 
-        $userUser = new User();
-        $userUser->setUsername('user');
-        $userUser->setEmail('borisschapira+user@gmail.com');
-        $userUser->setRoles(['ROLE_USER']);
-        $userUser->setEnabled(true);
-        $userUser->setPlainPassword('user');
-        $manager->persist($userUser);
-        $users[] = $userUser;
+        for ($i = 0; $i < 10; $i++) {
+            $userUser = new User();
+            $userUser->setUsername($faker->userName);
+            $userUser->setEmail('borisschapira+user'.$i.'@gmail.com');
+            $userUser->setRoles(['ROLE_USER']);
+            $userUser->setEnabled(true);
+            $userUser->setPlainPassword('user');
+            $userUser->setFirstName($faker->firstName);
+            $userUser->setLastName($faker->lastName);
+            $manager->persist($userUser);
+            $users[] = $userUser;
+        }
 
         /**
          * *********************
@@ -58,7 +70,7 @@ class LoadUserData implements FixtureInterface
 
         $categories = [];
 
-        foreach($categoryData as $name=>$slug) {
+        foreach ($categoryData as $name => $slug) {
             $category = new Category();
             $category->setName($name);
             $category->setSlug($slug);
@@ -72,14 +84,14 @@ class LoadUserData implements FixtureInterface
          * *********************
          */
 
-        foreach($users as $user){
+        foreach ($users as $user) {
             for ($i = 0; $i < 10; $i++) {
                 $wish = new Wish();
-                $wish->setTitle('Vœu #'.$i);
-                $wish->setDescription('Description du vœu #'.$i);
+                $wish->setTitle($faker->sentence($nbWords = 12, $variableNbWords = true));
+                $wish->setDescription($faker->paragraph($nbSentences = 3, $variableNbSentences = true));
                 $wish->setUser($user);
-                $wish->setCategory($categories[rand(0,count($categories)-1)]);
-                if(rand(0,9) % 3 == 0){
+                $wish->setCategory($categories[rand(0, count($categories) - 1)]);
+                if (rand(0, 9) % 3 == 0) {
                     $wish->setLink('https://borisschapira.com');
                 }
                 $manager->persist($wish);

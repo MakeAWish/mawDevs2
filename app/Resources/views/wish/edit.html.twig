@@ -1,4 +1,4 @@
-{% extends 'logged.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block body %}
     <main>
@@ -7,27 +7,27 @@
             <header>{{ edit_form.vars.data.category.name }}</header>
             <div id="wish">
 
-                <div class="titre">
+                <div class="form-group">
                     {{ form_label(edit_form.title, 'Titre', { 'attr': {'class': 'form-control'} }) }}
                     {{ form_widget(edit_form.title, { 'attr': {'class': 'form-control'} }) }}
                 </div>
 
-                <div class="lien">
+                <div class="form-group">
                     {{ form_label(edit_form.link, 'Lien', { 'attr': {'class': 'form-control'} }) }}
                     {{ form_widget(edit_form.link, { 'attr': {'class': 'form-control'} }) }}
                 </div>
 
-                <div class="description">
+                <div class="form-group">
                     {{ form_label(edit_form.description, 'Description', { 'attr': {'class': 'form-control'} }) }}
                     {{ form_widget(edit_form.description, { 'attr': {'class': 'form-control'} }) }}
                 </div>
 
-                <div class="categorie">
+                <div class="form-group">
                     {{ form_label(edit_form.category, 'Catégorie', { 'attr': {'class': 'form-control'} }) }}
                     {{ form_widget(edit_form.category, { 'attr': {'class': 'form-control'} }) }}
                 </div>
 
-                <div class="importance">
+                <div class="form-group">
                     {{ form_label(edit_form.weight, 'Importance', { 'attr': {'class': 'form-control'} }) }}
                     {{ form_widget(edit_form.weight, { 'attr': {'class': 'form-control'} }) }}
                 </div>

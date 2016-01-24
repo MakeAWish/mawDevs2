@@ -1,0 +1,29 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+    <main>
+        {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'editor' } }) }}
+        <article class="app-form">
+            <header>Modifier mon profil</header>
+            <div>
+                <div class="form-group">
+                    {{ form_label(form.email, 'Email', { 'attr': {'class': 'form-control'} }) }}
+                    {{ form_widget(form.email, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.username, 'Login', { 'attr': {'class': 'form-control'} }) }}
+                    {{ form_widget(form.username, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.current_password, 'Confirmer votre mot de passe', { 'attr': {'class': 'form-control'} }) }}
+                    {{ form_widget(form.current_password, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+            </div>
+            <footer>
+                <input type="submit" value="{{ 'profile.edit.submit'|trans }}"/>
+                <a href="{{ path('fos_user_change_password') }}">Modifier mon mot de passe</a>
+            </footer>
+        </article>
+        {{ form_end(form) }}
+    </main>
+{% endblock fos_user_content %}

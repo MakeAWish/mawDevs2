@@ -9,6 +9,33 @@
 </head>
 <body>
 {% block nav %}
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <nav>
+            <input type="checkbox" id="navcheck" role="button" title="menu">
+            <label for="navcheck" aria-hidden="true" title="menu">
+                <h1>
+                    Make a wish
+                </h1>
+            </label>
+            <div class="menu">
+                <a href="{{ path("wish_index") }}">
+                    Ma Wishlist
+                </a>
+                <a href="#">
+                    Offrir un cadeau
+                </a>
+                {% if is_granted("ROLE_ADMIN") %}
+                    <a href="{{ path('user_index') }}">
+                        Gérer les utilisateurs
+                    </a>
+                {% endif %}
+                <a href="{{ path('fos_user_profile_edit') }}">Modifier mon profil</a>
+                <a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+            </div>
+        </nav>
+    {% endif %}
 {% endblock nav %}
 
 {% if app.request.hasPreviousSession %}
