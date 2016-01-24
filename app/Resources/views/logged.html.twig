@@ -2,8 +2,8 @@
 
 {% block nav %}
     <nav>
-        <h1>Make a wish</h1>
-        <div style="float:right">
+        <h1><a href="{{ path("homepage") }}" title="Ma liste de vœux">Make a wish</a></h1>
+        <div>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 <a href="{{ path('fos_user_profile_edit') }}">{{ app.user.username }}</a>
                 {% if is_granted("ROLE_ADMIN") %}

@@ -2,12 +2,10 @@
 
 {% block body %}
     <main>
-        {{ form_start(edit_form) }}
+        {{ form_start(edit_form, {'attr': {'class': 'editor'}}) }}
         <article class="wish {{ edit_form.vars.data.category.slug }}">
             <header>{{ edit_form.vars.data.category.name }}</header>
             <div id="wish">
-
-                {# form_widget(edit_form) #}
 
                 <div class="titre">
                     {{ form_label(edit_form.title, 'Titre', { 'attr': {'class': 'form-control'} }) }}
@@ -40,6 +38,7 @@
                 <a href="{{ path('wish_show', { 'id': wish.id }) }}">Annuler</a>
             </footer>
         </article>
+        {{ form_widget(edit_form) }}
         {{ form_end(edit_form) }}
     </main>
 {% endblock %}

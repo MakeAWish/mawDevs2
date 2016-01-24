@@ -6,7 +6,7 @@
         {{ wish.title }}
     </h2>
     <footer>
-        {% if wish.link is not empty %}<a href="{{ wish.link }}">Lien</a>{% endif %}
+        {% if wish.link is not empty %}<a href="{{ wish.link }}" title="Lien vers &quot;{{ wish.title }}&quot;">Lien</a>{% endif %}
         <a href="{{ path('wish_show', { 'id': wish.id }) }}">Détails</a>
         <a href="{{ path('wish_edit', { 'id': wish.id }) }}">Modifier</a>
     </footer>

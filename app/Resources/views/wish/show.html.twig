@@ -1,40 +1,26 @@
 {% extends 'logged.html.twig' %}
 
 {% block body %}
-    <h1>Wish</h1>
-
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ wish.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ wish.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ wish.description }}</td>
-            </tr>
-            <tr>
-                <th>Link</th>
-                <td>{{ wish.link }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('wish_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('wish_edit', { 'id': wish.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <main>
+        {{ form_start(delete_form) }}
+        <article class="wish {{ wish.category.slug }}">
+            <header>
+                {{ wish.category.name }}
+            </header>
+            <h2>
+                {{ wish.title }}
+            </h2>
+            <h2>
+                {{ wish.description | raw }}
+            </h2>
+            <footer>
+                {% if wish.link is not empty %}
+                    <a href="{{ wish.link }}" title="Lien vers &quot;{{ wish.title }}&quot;">Lien</a>
+                {% endif %}
+                <a href="{{ path('wish_edit', { 'id': wish.id }) }}">Modifier</a>
+                <input type="submit" value="Supprimer">
+            </footer>
+        </article>
+        {{ form_end(delete_form) }}
+    </main>
 {% endblock %}
