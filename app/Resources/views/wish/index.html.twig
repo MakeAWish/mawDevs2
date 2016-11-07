@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Make a wish, {{ user.firstName }} !{% endblock %}
+
 {% block body %}
     <main>
     {% for wish in wishes %}

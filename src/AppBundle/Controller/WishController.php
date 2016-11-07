@@ -30,6 +30,7 @@ class WishController extends Controller
 
         return $this->render('wish/index.html.twig', array(
             'wishes' => $wishes,
+            'user' => $currentUser
         ));
     }
 

@@ -87,8 +87,8 @@ class LoadUserData implements FixtureInterface
         foreach ($users as $user) {
             for ($i = 0; $i < 10; $i++) {
                 $wish = new Wish();
-                $wish->setTitle($faker->sentence($nbWords = 12, $variableNbWords = true));
-                $wish->setDescription($faker->paragraph($nbSentences = 3, $variableNbSentences = true));
+                $wish->setTitle($user->getFirstName().' '. $faker->sentence($nbWords = 12, $variableNbWords = true));
+                $wish->setDescription($faker->paragraph($nbSentences = 2, $variableNbSentences = true));
                 $wish->setUser($user);
                 $wish->setCategory($categories[rand(0, count($categories) - 1)]);
                 if (rand(0, 9) % 3 == 0) {

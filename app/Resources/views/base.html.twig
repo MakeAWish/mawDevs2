@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     <link rel="stylesheet" href="{{ asset("styles/styles.css") }}"/>
 </head>
@@ -14,7 +15,7 @@
             <input type="checkbox" id="navcheck" role="button" title="menu">
             <label for="navcheck" aria-hidden="true" title="menu">
                 <h1>
-                    Make a wish
+                    Make a wish{% if user is defined %}, {{ user.firstName }}!{% endif %}
                 </h1>
             </label>
             <div class="menu">

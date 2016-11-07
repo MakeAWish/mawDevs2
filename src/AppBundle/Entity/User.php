@@ -57,6 +57,14 @@ class User extends BaseUser
     }
 
     /**
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->firstName.' '.$this->getLastName();
+    }
+
+    /**
      * @param string $firstName
      * @return User
      */

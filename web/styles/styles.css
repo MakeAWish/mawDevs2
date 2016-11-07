@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* normalize-scss 3.0.2+normalize.3.0.2 | MIT/GPLv2 License | bit.ly/normalize-scss */
 /**
  * Establish a vertical rhythm unit using $base-font-size, $base-line-height,
@@ -539,64 +538,13 @@ th {
   padding: 0;
 }
 
-* {
+/* Box sizing normalization */
+html {
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Arial';
-  margin: 0px;
-  color: black;
-}
-
-aside {
-  background: url("../images/light_grey.png") #C0C0C0 repeat fixed;
-  color: black;
-  padding-left: 15px;
-  margin: 0px;
-  font-family: 'Sofia';
-  width: 20%;
-  float: left;
-  position: relative;
-  z-index: 1;
-}
-aside ul {
-  list-style-type: none;
-  margin-top: 0px;
-}
-aside ul li {
-  font-size: 1em;
-}
-aside ul label {
-  padding-left: 5px;
-}
-aside ol {
-  list-style-type: none;
-  margin-top: 0px;
-}
-aside ol li {
-  font-size: 1em;
-}
-aside ol li:first-of-type {
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-}
-aside ol li:first-of-type label {
-  border-bottom: 1px dashed black;
-  padding-bottom: 10px;
-}
-aside ol label {
-  padding-left: 10px;
-}
-aside p {
-  margin: 0px;
-  padding-top: 20px;
-  padding-bottom: 5px;
-  font-size: 1.2em;
-}
-aside a {
-  text-decoration: none;
-  color: black;
+*, *:after, *::before {
+  box-sizing: inherit;
 }
 
 header {
@@ -606,56 +554,24 @@ header {
   font-size: 5em;
   text-align: center;
   text-shadow: 2px 1px 2px silver;
+  line-height: 1em;
 }
 
-section {
+.login {
   display: block;
-  margin: 0px auto;
+  margin: 0 auto;
   width: 350px;
 }
-section p {
-  text-align: right;
-  clear: both;
-  line-height: 20px;
-}
-section p label {
-  float: left;
-  font-family: 'Sofia';
-  font-size: 20px;
-}
-section p input {
-  width: 150px;
-  font-family: 'Arial';
-}
-section p a {
-  display: block;
-  float: right;
-  font-size: 0.8em;
-  color: gray;
-  font-style: italic;
-  margin-top: 3px;
-}
-section.submit_1 {
-  width: 52px;
-  height: 40px;
-  margin: 40px auto 0px auto;
-}
-section.submit_1 input {
-  display: inline-block;
-  vertical-align: top;
+.login input.validate {
   width: 32px;
   height: 37px;
   border: none;
-  cursor: pointer;
-  margin: 0 10px;
-}
-section.submit_1 input.validate {
   background: url(../img/tick.png) no-repeat;
 }
 
 nav {
   margin: 0;
-  background-color: black;
+  background: url(../img/darthvador.png) silver repeat fixed;
   color: white;
   display: block;
   line-height: 60px;
@@ -664,15 +580,18 @@ nav {
   box-shadow: 0 0 5px black;
   position: relative;
   z-index: 2;
-  font-family: 'Alex Brush', cursive;
+  font-family: "Alex Brush", cursive;
 }
 nav h1 {
   margin: 0;
   padding-right: 1em;
   float: right;
-  font-family: 'Alex Brush', cursive;
   font-weight: normal;
   font-size: 2.5em;
+  max-width: calc(100% - 20px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 nav input {
   position: fixed;
@@ -741,7 +660,7 @@ nav .menu::before {
   left: 0;
   z-index: -1;
   width: 25em;
-  background: url(../img/footer.png) silver repeat fixed;
+  background: url(../img/darthvador.png) silver repeat fixed;
   content: '';
   -webkit-transform: skewX(15deg) translateX(-100%);
       -ms-transform: skewX(15deg) translateX(-100%);
@@ -758,7 +677,7 @@ nav .menu a {
   margin: 0.5em 0;
   padding: 0.2em 2em;
   font-size: 1.5em;
-  color: #000;
+  color: white;
   text-decoration: none;
   font-weight: 500;
   -webkit-transform: translateX(-100%);
@@ -795,8 +714,17 @@ nav .menu a:nth-child(6) {
   -webkit-transition-delay: 0s, 350ms;
           transition-delay: 0s, 350ms;
 }
+nav .menu a:nth-child(7) {
+  -webkit-transition-delay: 0s, 400ms;
+          transition-delay: 0s, 400ms;
+}
+nav .menu a:nth-child(8) {
+  -webkit-transition-delay: 0s, 450ms;
+          transition-delay: 0s, 450ms;
+}
 nav .menu a:hover, nav .menu a:focus {
-  color: black;
+  color: white;
+  text-decoration: underline;
 }
 nav [id="navcheck"]:checked + label::before {
   opacity: 1;
@@ -851,7 +779,7 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  /* Créer un contexte flexible pour l'agencement horizontal bien distribué */
+  /* Creer un contexte flexible pour l'agencement horizontal bien distribue */
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -859,28 +787,40 @@ main {
   /* horizontal */
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  /* On passe à la ligne quand il faut ? */
-  /* Gouttières horizontales */
-  margin-left: -20px;
+  /* On passe a la ligne quand il faut ? */
+  /* Gouttieres horizontales */
   padding-right: 20px;
-  /* / Gouttières horizontales */
+  /* / Gouttieres horizontales */
+}
+main a.otherindex {
+  text-decoration: none;
+  color: black;
+  width: 100%;
+  text-align: center;
+  font-family: 'Sofia', cursive;
+  font-size: 1.5em;
+  padding-top: 40px;
+  padding-bottom: 20px;
+}
+main a.otherindex:hover, main a.otherindex:focus {
+  text-decoration: underline;
 }
 main article {
-  /* Gouttières horizontales */
+  /* Gouttieres horizontales */
   margin-left: 20px;
   margin-top: 20px;
   border: 1px solid;
 }
 main article.wishlist {
-  /* / Gouttières horizontales */
-  -webkit-box-flex: 1;
-      -ms-flex: 1 0 20em;
-          flex: 1 0 20em;
+  /* / Gouttieres horizontales */
+  -webkit-box-flex: 1 0 16em;
+  -ms-flex: 1 0 16em;
+  flex: 1 0 16em;
   /* Occupe au minimum 20em de large, et sinon tout ce que tu peux pour tout remplir */
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  /* crée un contexte flex inline pour chaque article (agencement vertical bien distribué) */
+  /* cree un contexte flex inline pour chaque article (agencement vertical bien distribue) */
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -888,7 +828,7 @@ main article.wishlist {
   /* vertical */
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  /* on passe à la colonne suivant quand il faut ? */
+  /* on passe a la colonne suivant quand il faut ? */
 }
 main article.app-form {
   border-color: silver;
@@ -1014,20 +954,24 @@ main article h2 {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  /* occupe la hauteur restante laissée par le header et le footer */
+  /* occupe la hauteur restante laissee par le header et le footer */
+}
+main article h2 a {
+  text-decoration: none;
+  color: black;
 }
 main article footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  /* crée un contexte flex pour ses enfants */
+  /* cree un contexte flex pour ses enfants */
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
   /* affichage horizontal */
   width: 100%;
-  background: url("../img/footer.png") silver repeat fixed;
+  background: url("../img/darthvador.png") silver repeat fixed;
   text-align: center;
 }
 main article footer a {
@@ -1041,16 +985,14 @@ main article footer a {
   transition: flex .5s, -webkit-box-flex .5s, -ms-flex .5s;
   padding: 0.3em 0em;
   display: block;
-  color: gray;
+  color: white;
+  font-family: 'Sofia', cursive;
   text-decoration: none;
   white-space: nowrap;
-  font-size: 0.8em;
+  font-size: 0.9em;
 }
 main article footer a:hover, main article footer a:focus {
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
-  color: black;
+  text-decoration: underline;
 }
 
 .linkbox {
@@ -1128,36 +1070,63 @@ article div {
   color: #d8d8d8;
 }
 
-form input[type=text],
-form input[type=email],
-form input[type=url],
-form input[type=password],
-form textarea {
-  width: 100%;
-  border-top: 1px solid #ccc;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+form {
+  margin: 0 auto;
+  width: 70%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
-form input[type=text]:focus,
-form input[type=email]:focus,
-form input[type=url]:focus,
-form input[type=password]:focus,
-form textarea:focus {
-  outline: 0;
-  border-color: #4697e4;
+form p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
-
-.editor {
-  width: 100%;
-}
-
-.form-group {
-  margin: 20px auto;
-  border: none;
-}
-.form-group textarea {
+form p input:not([type=submit]),
+form p textarea {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  /* fluid width */
   display: block;
+  /* IE fix */
+}
+form p label {
+  width: 7em;
+  margin-right: 0.5em;
+  text-align: right;
+}
+form p.noflex {
+  display: block;
+  text-align: right;
+}
+form p.noflex input:not([type=submit]),
+form p.noflex textarea {
+  display: inline-block;
+}
+form .small {
+  margin: 0.5em;
+  font-size: 0.8em;
+}
+form input[type="submit"] {
+  margin: auto;
+}
+
+main.user {
   width: 100%;
-  margin-top: 10px;
+  text-align: center;
+  margin-top: 50px;
+}
+main.user a {
+  color: black;
+  text-decoration: none;
+  font-family: 'Sofia', cursive;
+  font-size: 1.5em;
+}
+main.user ul {
+  width: 100%;
+  list-style: none;
+}
+main.user li {
+  line-height: 3em;
 }
